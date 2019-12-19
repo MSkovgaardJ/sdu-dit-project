@@ -1,5 +1,8 @@
+require('dotenv').config();
 const mongoose = require('mongoose');
 const Post = mongoose.model('posts');
+const jwt = require('jsonwebtoken')
+
 
 module.exports = (app) => {
 
@@ -15,6 +18,7 @@ module.exports = (app) => {
   });
 
   app.post(`/api/post`, async (req, res) => {
+    console.log(req.body)
     let post = await Post.create(req.body);
     return res.status(201).send({
       error: false,
@@ -41,5 +45,15 @@ module.exports = (app) => {
     })
 
   })
-
+  function authenticateToken(req, res, next) {
+    const authHeader = req.body.authtoken;
+    const decode = jwt.decode(authHeader, {complete: true})
+    if (authHeader == null) return res.sendStatus(401)
+        jwt.verify(authHeader, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
+            console.log("Error",err)
+            if (err) return res.sendStatus(403)
+            req.body = user
+            next()
+        })
+    }
 }

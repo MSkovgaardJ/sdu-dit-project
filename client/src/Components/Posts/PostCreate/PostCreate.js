@@ -9,6 +9,8 @@ export default class PostCreate extends Component {
     super(props);
     this.state = { author: "", content: "", errorMsg: "", isSuccesfull: true };
   }
+
+  
   onAuthorInput = event => {
     this.setState({ author: event.target.value });
   };
@@ -17,17 +19,21 @@ export default class PostCreate extends Component {
   };
 
   onCreatePost = async () => {
+    var currentUser = sessionStorage.getItem('currentUser');
+    if(currentUser != null){
     if (this.state.author.length < 1 || this.state.content.length < 1) {
       console.log("error msg");
     } else {
       let data = {
         author: this.state.author,
-        content: this.state.content
+        content: this.state.content,
+        authtoken: currentUser,
       }
       await postServices.createPost(data);
       this.setState({ author: "", content: "" });
     }
-  };
+  } else {alert("You have to be logged in to post a comment!")}
+  };  
 
   render() {
     return (

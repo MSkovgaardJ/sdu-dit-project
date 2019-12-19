@@ -12,8 +12,9 @@ export default {
     console.log(res.data)
     return res.data || [];
   },
-  createPost: async (data) => {
-    let res = await axios.post(`http://localhost:8000/api/post`, data);
+  createPost: async (data, currentUser) => {
+    console.log(currentUser)
+    let res = await axios.post(`http://localhost:8000/api/post`, data, currentUser);
     return res.data || [];
   },
   updatePost: async (id, data) => {

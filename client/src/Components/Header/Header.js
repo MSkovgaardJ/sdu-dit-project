@@ -2,14 +2,17 @@ import React, { Component } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {Link} from 'react-router-dom';
 import "./Header.css";
-
+import authServices from '../../services/authServices';
 import {faHome} from '@fortawesome/free-solid-svg-icons';
 import {faPen} from '@fortawesome/free-solid-svg-icons';
 import {faStream} from '@fortawesome/free-solid-svg-icons';
 import {faLock} from '@fortawesome/free-solid-svg-icons'
 import {faLockOpen} from '@fortawesome/free-solid-svg-icons'
 
-
+function logout() {
+  authServices.logout();
+  alert("You are logged out")
+}
 
 export default class Header extends Component {
   render() {
@@ -21,7 +24,7 @@ export default class Header extends Component {
                     <Link to='/PostCreate'><FontAwesomeIcon icon={faPen} size="sm" />Create post</Link>
                     <Link to='/PostList'><FontAwesomeIcon icon={faStream} size="sm" />All posts</Link>
                     <Link to='/LoginPage'><FontAwesomeIcon icon={faLock} size="sm" />Login</Link>
-                    <Link to='/'><FontAwesomeIcon icon={faLockOpen} size="sm" />Logout</Link>
+                    <Link onClick={logout}><FontAwesomeIcon icon={faLockOpen} size="sm" />Logout</Link>
                 </div>
             </div>
         </div>

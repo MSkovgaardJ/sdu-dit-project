@@ -25,17 +25,15 @@ export default class LoginPage extends Component {
         password: this.state.password
       }
     let AT = await authServices.login(data);
-    this.setState({ userName: "", password: "", accessToken: AT.accessToken, currentUser: AT.userName });
+    this.setState({ userName: "", password: "", accessToken: AT.accessToken });
+    sessionStorage.setItem('currentUser', this.state.accessToken);
     this.loginSucess();
     }
   };
   loginSucess(){
-      return(
-          <div>
-
-          </div>
-      )    
-}
+    return alert('Login sucess')
+    }
+  
   onGetUser = async () => {
     let res = await authServices.getUsers();
     console.log(res)
@@ -73,11 +71,7 @@ export default class LoginPage extends Component {
                 Create User
             </Button>
         </Link>
-        <Button onClick={this.onGetUser} variant="contained">
-            Get user
-          </Button>
         </div>
-        
       </div>
     );
   }

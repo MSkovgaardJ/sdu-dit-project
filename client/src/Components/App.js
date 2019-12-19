@@ -1,6 +1,6 @@
 // Framework essential imports
 import React, { Component } from "react";
-import { Router, Route, Switch } from "react-router-dom";
+import { Router, Route, Switch, Redirect } from "react-router-dom";
 import { createBrowserHistory } from "history";
 
 // Style imports
@@ -17,7 +17,7 @@ import CreateUser from "./Login/CreateUser/CreateUser";
 
 
 var hist = createBrowserHistory();
-
+var currentUser = sessionStorage.getItem('currentUser');
 hist.listen(location => {
   // Use setTimeout to make sure this runs after React Router's own listener
   setTimeout(() => {
@@ -44,6 +44,9 @@ export default class App extends Component {
           <Route path="/PostList" component={PostList} />
           <Route path="/post/:id" component={PostView} />
           <Route path="/LoginPage" component={LoginPage} />
+          <Route path="/PostCreate">
+          {!currentUser ? <Redirect to="/LoginPage" /> : <LoginPage />}
+          </Route>
           <Route path="/CreateUser" component={CreateUser} />
           <Route path="/" component={StartPage} />
         </Switch>
