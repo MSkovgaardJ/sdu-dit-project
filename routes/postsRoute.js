@@ -10,7 +10,6 @@ module.exports = (app) => {
 
   app.get(`/api/post/:id`, async (req, res) => {
     let {id} = req.params;
-
     let post = await Post.findById(id);
     return res.status(200).send(post);
   });
@@ -25,9 +24,7 @@ module.exports = (app) => {
 
   app.put(`/api/post/:id`, async (req, res) => {
     const {id} = req.params;
-
     let post = await Post.findByIdAndUpdate(id, req.body);
-
     return res.status(202).send({
       error: false,
       post
@@ -37,9 +34,7 @@ module.exports = (app) => {
 
   app.delete(`/api/post/:id`, async (req, res) => {
     const {id} = req.params;
-
     let post = await Post.findByIdAndDelete(id);
-
     return res.status(202).send({
       error: false,
       post

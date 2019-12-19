@@ -20,12 +20,10 @@ export default class PostCreate extends Component {
     if (this.state.author.length < 1 || this.state.content.length < 1) {
       console.log("error msg");
     } else {
-
       let data = {
         author: this.state.author,
         content: this.state.content
       }
-
       await postServices.createPost(data);
       this.setState({ author: "", content: "" });
     }

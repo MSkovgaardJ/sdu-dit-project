@@ -9,6 +9,7 @@ export default {
   },
   getPost: async (id) => {
     let res = await axios.get(`http://localhost:8000/api/post/${id}`);
+    console.log(res.data)
     return res.data || [];
   },
   createPost: async (data) => {

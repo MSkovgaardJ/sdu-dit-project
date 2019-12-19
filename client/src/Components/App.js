@@ -12,6 +12,9 @@ import PostCreate from "./Posts/PostCreate/PostCreate";
 import PostList from "./Posts/PostList/PostList";
 import StartPage from "./StartPage/StartPage";
 import PostView from "./Posts/PostView/PostView";
+import LoginPage from "./Login/LoginPage";
+import CreateUser from "./Login/CreateUser/CreateUser";
+
 
 var hist = createBrowserHistory();
 
@@ -40,6 +43,8 @@ export default class App extends Component {
           <Route path="/PostCreate" component={PostCreate} />
           <Route path="/PostList" component={PostList} />
           <Route path="/post/:id" component={PostView} />
+          <Route path="/LoginPage" component={LoginPage} />
+          <Route path="/CreateUser" component={CreateUser} />
           <Route path="/" component={StartPage} />
         </Switch>
       </Router>

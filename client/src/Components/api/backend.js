@@ -2,8 +2,14 @@ import Axios from "axios";
 import uuid from "react-uuid";
 
 Axios.create({
-  baseURL: "http://localhost:8000"
+  baseURL: "http://localhost:5000"
 });
+
+var users = [
+  {name: 'Jens',
+  password: 'HHeEE'
+}
+]
 
 var comments = [
   {
@@ -60,7 +66,15 @@ const upvote = async id => {
 const downvote = async id => {
   console.log("Downvoting: " + id);
 };
-
+const createUser111 = async (userName, password) => {
+  //var res = await axios.post("/api/post/id");
+  //e.preventDefault();
+  users.push({
+    id: uuid(),
+    userName: userName,
+    password: password
+  });
+};
 const createPost = async (author, content) => {
   //var res = await axios.post("/api/post/id");
   //e.preventDefault();
@@ -91,5 +105,6 @@ export {
   createComment,
   fetchComments,
   upvote,
-  downvote
+  downvote,
+  createUser111
 };
