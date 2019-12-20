@@ -15,7 +15,7 @@ services:
     links:
       - db
       - dbAuth
-
+    
   db:
     image: mongo
     restart: always

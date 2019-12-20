@@ -31,7 +31,7 @@ module.exports = (app) => {
             const accessToken = jwt.sign(user.userName, process.env.ACCESS_TOKEN_SECRET)  
             res.status(201).send({accessToken: accessToken, userName: req.body.userName})
           } else {
-            res.send('Access denied')
+            res.send({err:'Access denied'})
           }
         } catch {
           res.status(500).send('It"s all over')

@@ -5,10 +5,10 @@
   "main": "server.js",
   "scripts": {
     "client": "npm run start --prefix client",
-    "authServer": "nodemon authServer.js",
+    "authServer": "node authServer.js",
     "server": "nodemon server.js",
-    "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\""
-  }, 
+    "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run authServer\" \"npm run client\""
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",

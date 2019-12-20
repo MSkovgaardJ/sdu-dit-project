@@ -49,10 +49,10 @@ module.exports = (app) => {
     const authHeader = req.body.authtoken;
     const decode = jwt.decode(authHeader, {complete: true})
     if (authHeader == null) return res.sendStatus(401)
-        jwt.verify(authHeader, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
+        jwt.verify(authHeader, process.env.ACCESS_TOKEN_SECRET, (err, userName) => {
             console.log("Error",err)
             if (err) return res.sendStatus(403)
-            req.body = user
+            req.body.userName = userName
             next()
         })
     }
